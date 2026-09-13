@@ -13,3 +13,6 @@
   .hero p{margin-left:auto;margin-right:auto;}
   .hero .actions{justify-content:center;}
 }
+
+/* V8: fixed three-line intro heading on desktop */
+@media (min-width:901px){.section-head:not(.how-head) h2[data-i18n="introTitle"]{white-space:pre-line}}
