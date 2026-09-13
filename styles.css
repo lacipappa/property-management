@@ -4,37 +4,12 @@
 @media(max-width:900px){.links{display:none;position:absolute;left:0;right:0;top:78px;background:white;padding:18px 20px;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}.links.open{display:flex}.menu-btn{display:block}.mobile-lang{display:flex}.links .lang{display:none}.nav{position:relative}.hero{min-height:70vh}.quick-grid,.cards,.steps{grid-template-columns:1fr 1fr}.section-head,.split,.area-grid,.contact-box{grid-template-columns:1fr}.split img{height:420px}.footer-grid{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:1fr 1fr}.gallery img{height:300px!important}.gallery img:first-child{grid-column:1/-1}.cta-row{align-items:flex-start;flex-direction:column}.source{grid-template-columns:150px 1fr}.source img{height:120px}}
 @media(max-width:600px){.hero-title-desktop{display:none}.hero-title-mobile{display:inline;white-space:pre-line}.hero h1{font-size:34px;line-height:1.08}.how-head h2{white-space:normal}.container{width:min(100% - 28px,var(--max))}.topbar .container{justify-content:center}.topbar .right{display:none}.hero .inner{padding:70px 0 60px}.quick{margin-top:0}.quick-grid,.cards,.steps,.feature-list,.stats,.footer-grid,.gallery{grid-template-columns:1fr}.quick a{border-right:0;border-bottom:1px solid var(--line)}.section{padding:70px 0}.section-head{gap:10px}.split{gap:34px}.split img{height:330px}.area-photo{height:320px}.gallery img:first-child{grid-column:auto}.gallery img{height:250px!important}.source{grid-template-columns:1fr}.source img{height:210px}.copyright{flex-direction:column;gap:8px}}
 
-/* v20260913-3: layout/cache-fix */
-@media (min-width: 901px){
-  .how-head{display:block!important;width:100%!important;}
-  .how-head h2{white-space:nowrap!important;font-size:clamp(40px,4.1vw,58px)!important;max-width:none!important;}
+/* V7: fixed two-line centered desktop hero title */
+@media(min-width:601px){
+  .hero .inner{max-width:1100px;text-align:center;}
+  .hero-title-desktop{display:block;}
+  .hero-title-desktop .hero-line{display:block;white-space:nowrap;}
+  .hero h1{font-size:clamp(48px,5.1vw,76px);line-height:1.03;}
+  .hero p{margin-left:auto;margin-right:auto;}
+  .hero .actions{justify-content:center;}
 }
-@media (max-width: 600px){
-  .hero-title-mobile{display:block!important;white-space:pre-line!important;}
-  .hero h1{font-size:30px!important;line-height:1.08!important;max-width:100%!important;}
-}
-
-/* v20260913-4: desktop hero title fixed to exactly two intended lines */
-@media (min-width: 901px){
-  .hero .inner{max-width:960px!important;}
-  .hero h1{font-size:clamp(56px,5.2vw,76px)!important;line-height:1.02!important;max-width:960px!important;}
-  .hero-title-desktop{display:block!important;white-space:pre-line!important;}
-}
-
-/* v20260913-5: desktop hero must stay on exactly two lines */
-@media (min-width: 901px){
-  .hero .inner{max-width:1100px!important;}
-  .hero h1{font-size:clamp(54px,4.7vw,70px)!important;line-height:1.02!important;max-width:1100px!important;}
-  .hero-title-desktop{display:block!important;white-space:pre!important;}
-}
-
-/* v20260913-6: desktop hero — exactly two centered lines */
-@media (min-width: 901px){
-  .hero .inner{max-width:1100px!important;margin-left:auto!important;margin-right:auto!important;text-align:center!important;}
-  .hero .eyebrow,.hero p{margin-left:auto!important;margin-right:auto!important;}
-  .hero .actions{justify-content:center!important;}
-  .hero h1{font-size:clamp(52px,4.4vw,68px)!important;line-height:1.03!important;max-width:none!important;text-align:center!important;}
-  .hero-title-desktop{display:block!important;white-space:pre-line!important;text-align:center!important;}
-}
-/* v20260913-6: desktop hero exactly two centered lines */
-@media (min-width:901px){.hero .inner{max-width:1100px!important;margin-left:auto!important;margin-right:auto!important;text-align:center!important}.hero .eyebrow,.hero p{margin-left:auto!important;margin-right:auto!important}.hero .actions{justify-content:center!important}.hero h1{font-size:clamp(52px,4.4vw,68px)!important;line-height:1.03!important;max-width:none!important;text-align:center!important}.hero-title-desktop{display:block!important;white-space:pre-line!important;text-align:center!important}}
