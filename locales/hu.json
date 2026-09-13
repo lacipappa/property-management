@@ -152,7 +152,9 @@
       "areaText": "A pontos szolgáltatási terület minden, ezt a sablont használó vállalkozáshoz igazítható.",
       "ctaTitle": "Megbízható kezekben szeretné tudni az ingatlanát?",
       "ctaBtn": "Írja meg, mire van szüksége",
-      "heroTitleMobile": "Otthonáról gondoskodunk.\nÖn nyugodt lehet."
+      "heroTitleMobile": "Mi vigyázunk otthonára.\nÖn nyugodt lehet.",
+      "heroTitleLine1": "Az ingatlana rendben.",
+      "heroTitleLine2": "Ön nyugodt."
     },
     "cleaning-maintenance": {
       "cta": "Információt kérek",
@@ -171,3 +173,4 @@
     }
   }
 }
+
