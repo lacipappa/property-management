@@ -1,9 +1,69 @@
-const T={
- es:{home:'Inicio',services:'Servicios',owners:'Propietarios',cleaning:'Limpieza y mantenimiento',areas:'Zonas',about:'Nosotros',contact:'Contacto',images:'Fuentes de imágenes',cta:'Solicitar información'},
- en:{home:'Home',services:'Services',owners:'Owners',cleaning:'Cleaning & maintenance',areas:'Areas',about:'About',contact:'Contact',images:'Image sources',cta:'Request information'},
- hu:{home:'Kezdőlap',services:'Szolgáltatások',owners:'Tulajdonosoknak',cleaning:'Takarítás és karbantartás',areas:'Területek',about:'Rólunk',contact:'Kapcsolat',images:'Képforrások',cta:'Információt kérek'}
-};
-const pageStrings=window.PAGE_STRINGS||{};
-function setLang(lang){if(!T[lang])lang='es';localStorage.setItem('cc_lang',lang);document.documentElement.lang=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;const v=(pageStrings[lang]&&pageStrings[lang][k])||T[lang][k];if(v!==undefined)el.innerHTML=v});document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));}
-function init(){const c=window.SITE_CONFIG||{};document.querySelectorAll('[data-brand]').forEach(e=>e.textContent=c.brand||'CostaCare');document.querySelectorAll('[data-phone]').forEach(e=>e.textContent=c.phone||'');document.querySelectorAll('[data-email]').forEach(e=>e.textContent=c.email||'');document.querySelectorAll('[data-area]').forEach(e=>e.textContent=c.area||'');document.querySelectorAll('[data-phone-link]').forEach(e=>e.href='tel:'+(c.phoneHref||''));document.querySelectorAll('[data-wa]').forEach(e=>e.href='https://wa.me/'+(c.whatsapp||''));document.querySelectorAll('[data-email-link]').forEach(e=>e.href='mailto:'+(c.email||''));const mb=document.querySelector('.menu-btn'),ln=document.querySelector('.links');if(mb)mb.onclick=()=>ln.classList.toggle('open');document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));setLang(localStorage.getItem('cc_lang')||'es');}
-document.addEventListener('DOMContentLoaded',init);
+let translations = null;
+let currentLang = 'es';
+
+function getValue(obj, key) {
+  return key.split('.').reduce((acc, part) => acc && acc[part], obj);
+}
+
+async function loadLanguage(lang) {
+  if (!['es','en','hu'].includes(lang)) lang = 'es';
+  const page = document.body.dataset.page || 'index';
+  try {
+    const response = await fetch(`locales/${lang}.json`, {cache: 'no-cache'});
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    translations = {...(data.common || {}), ...((data.pages || {})[page] || {})};
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    localStorage.setItem('cc_lang', lang);
+    applyTranslations();
+  } catch (err) {
+    console.error('Language file could not be loaded:', err);
+  }
+}
+
+function applyTranslations() {
+  if (!translations) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const value = getValue(translations, el.dataset.i18n);
+    if (value !== undefined) el.textContent = value;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const value = getValue(translations, el.dataset.i18nPlaceholder);
+    if (value !== undefined) el.placeholder = value;
+  });
+  document.querySelectorAll('.lang button').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === currentLang);
+  });
+}
+
+function initConfig() {
+  const c = window.SITE_CONFIG || {};
+  document.querySelectorAll('[data-brand]').forEach(e => e.textContent = c.brand || 'CostaCare');
+  document.querySelectorAll('[data-phone]').forEach(e => e.textContent = c.phone || '');
+  document.querySelectorAll('[data-email]').forEach(e => e.textContent = c.email || '');
+  document.querySelectorAll('[data-area]').forEach(e => e.textContent = c.area || '');
+  document.querySelectorAll('[data-phone-link]').forEach(e => e.href = 'tel:' + (c.phoneHref || ''));
+  document.querySelectorAll('[data-wa]').forEach(e => e.href = 'https://wa.me/' + (c.whatsapp || ''));
+  document.querySelectorAll('[data-email-link]').forEach(e => e.href = 'mailto:' + (c.email || ''));
+}
+
+function initNavigation() {
+  const button = document.querySelector('.menu-btn');
+  const links = document.querySelector('.links');
+  if (button && links) button.addEventListener('click', () => links.classList.toggle('open'));
+  document.querySelectorAll('.lang button').forEach(btn => {
+    btn.addEventListener('click', () => loadLanguage(btn.dataset.lang));
+  });
+  const demoForm = document.querySelector('[data-demo-form]');
+  if (demoForm) demoForm.addEventListener('submit', event => {
+    event.preventDefault();
+    alert((translations && translations.formAlert) || 'Demo form');
+  });
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  initConfig();
+  initNavigation();
+  await loadLanguage(localStorage.getItem('cc_lang') || 'es');
+});
