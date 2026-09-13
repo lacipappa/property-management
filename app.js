@@ -1,5 +1,7 @@
 let translations = null;
 let currentLang = 'es';
+const LANGUAGE_STORAGE_KEY = 'cc_lang_v3';
+const ASSET_VERSION = '20260913-3';
 
 function getValue(obj, key) {
   return key.split('.').reduce((acc, part) => acc && acc[part], obj);
@@ -9,13 +11,13 @@ async function loadLanguage(lang) {
   if (!['es','en','hu'].includes(lang)) lang = 'es';
   const page = document.body.dataset.page || 'index';
   try {
-    const response = await fetch(`locales/${lang}.json`, {cache: 'no-cache'});
+    const response = await fetch(`locales/${lang}.json?v=${ASSET_VERSION}`, {cache: 'no-store'});
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     translations = {...(data.common || {}), ...((data.pages || {})[page] || {})};
     currentLang = lang;
     document.documentElement.lang = lang;
-    localStorage.setItem('cc_lang', lang);
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
     applyTranslations();
   } catch (err) {
     console.error('Language file could not be loaded:', err);
@@ -32,7 +34,7 @@ function applyTranslations() {
     const value = getValue(translations, el.dataset.i18nPlaceholder);
     if (value !== undefined) el.placeholder = value;
   });
-  document.querySelectorAll('.lang button').forEach(btn => {
+  document.querySelectorAll('.lang button, .mobile-lang button').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === currentLang);
   });
 }
@@ -52,7 +54,7 @@ function initNavigation() {
   const button = document.querySelector('.menu-btn');
   const links = document.querySelector('.links');
   if (button && links) button.addEventListener('click', () => links.classList.toggle('open'));
-  document.querySelectorAll('.lang button').forEach(btn => {
+  document.querySelectorAll('.lang button, .mobile-lang button').forEach(btn => {
     btn.addEventListener('click', () => loadLanguage(btn.dataset.lang));
   });
   const demoForm = document.querySelector('[data-demo-form]');
@@ -65,5 +67,5 @@ function initNavigation() {
 document.addEventListener('DOMContentLoaded', async () => {
   initConfig();
   initNavigation();
-  await loadLanguage(localStorage.getItem('cc_lang') || 'es');
+  await loadLanguage(localStorage.getItem(LANGUAGE_STORAGE_KEY) || 'es');
 });
