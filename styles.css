@@ -28,3 +28,13 @@
   .hero-title-desktop{display:block!important;white-space:pre!important;}
 }
 
+/* v20260913-6: desktop hero — exactly two centered lines */
+@media (min-width: 901px){
+  .hero .inner{max-width:1100px!important;margin-left:auto!important;margin-right:auto!important;text-align:center!important;}
+  .hero .eyebrow,.hero p{margin-left:auto!important;margin-right:auto!important;}
+  .hero .actions{justify-content:center!important;}
+  .hero h1{font-size:clamp(52px,4.4vw,68px)!important;line-height:1.03!important;max-width:none!important;text-align:center!important;}
+  .hero-title-desktop{display:block!important;white-space:pre-line!important;text-align:center!important;}
+}
+/* v20260913-6: desktop hero exactly two centered lines */
+@media (min-width:901px){.hero .inner{max-width:1100px!important;margin-left:auto!important;margin-right:auto!important;text-align:center!important}.hero .eyebrow,.hero p{margin-left:auto!important;margin-right:auto!important}.hero .actions{justify-content:center!important}.hero h1{font-size:clamp(52px,4.4vw,68px)!important;line-height:1.03!important;max-width:none!important;text-align:center!important}.hero-title-desktop{display:block!important;white-space:pre-line!important;text-align:center!important}}
