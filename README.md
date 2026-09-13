@@ -1,19 +1,15 @@
-# CostaCare Property Management — MesterWeb demo
+# CostaCare Property Management – MesterWeb demo
 
-Static multilingual (ES/EN/HU) property-management website template.
+Static multi-page property-management website template for GitHub + Render.
 
-## Files
-- `index.html`
-- `services.html`
-- `owners.html`
-- `cleaning-maintenance.html`
-- `areas.html`
-- `about.html`
-- `contact.html`
-- `image-sources.html`
-- `styles.css`, `app.js`, `config.js`
+## Languages
+Spanish, English and Hungarian are stored in separate JSON files:
+- `locales/es.json`
+- `locales/en.json`
+- `locales/hu.json`
 
-## Customization
-Edit `config.js` for brand/contact data. Text translations live in each page's `PAGE_STRINGS` object.
+## Images
+Images load remotely from `images.unsplash.com`. Full photo and photographer credits are listed in `image-sources.html`.
 
-Images are loaded remotely from Unsplash. Review `image-sources.html` before commercial use and the exact source pages and photographer profiles used by this demo are listed there.
+## Main pages
+`index.html`, `services.html`, `owners.html`, `cleaning-maintenance.html`, `areas.html`, `about.html`, `contact.html`, `image-sources.html`.
