@@ -123,7 +123,7 @@
       "q4": "Vendégkezelés",
       "q4s": "Check-in, támogatás, szervezés",
       "introTag": "Minden kézben tartva",
-      "introTitle": "Egyetlen megbízható helyi kapcsolat minden feladatra.",
+      "introTitle": "Egy megbízható helyi kapcsolat\naki gondoskodik\nmindenről.",
       "introText": "Különösen azoknak a tulajdonosoknak, akik külföldön élnek vagy hosszabb időt töltenek távol az ingatlanuktól. Mi koordinálunk, Ön pedig átlátható tájékoztatást kap.",
       "s1": "Felügyelet és ellenőrzés",
       "s1p": "Rendszeres látogatások, állapotellenőrzés, szellőztetés és dokumentálás.",
@@ -173,4 +173,3 @@
     }
   }
 }
-
