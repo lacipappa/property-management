@@ -152,7 +152,9 @@
       "areaText": "The exact service area can be adapted for each business using this template.",
       "ctaTitle": "Ready to leave your property in good hands?",
       "ctaBtn": "Tell us what you need",
-      "heroTitleMobile": "We care for your property.\nYou enjoy peace of mind."
+      "heroTitleMobile": "We care for your property.\nYou enjoy peace of mind.",
+      "heroTitleLine1": "Your property cared for.",
+      "heroTitleLine2": "Your mind at ease."
     },
     "cleaning-maintenance": {
       "cta": "Request information",
