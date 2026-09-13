@@ -1,0 +1,1 @@
+window.SITE_CONFIG={brand:'CostaCare',descriptor:'PROPERTY MANAGEMENT',phone:'+34 600 000 000',phoneHref:'+34600000000',email:'hello@costacare.example',whatsapp:'34600000000',area:'Costa Blanca · Alicante'};
